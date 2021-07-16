@@ -1,5 +1,6 @@
-.editor-ctr {
+textarea {
     background-color: black;
     color: white;
-
+    border: none;
+    width: 100%;
 }

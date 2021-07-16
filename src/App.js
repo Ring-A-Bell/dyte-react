@@ -26,8 +26,8 @@ export default function App() {
           type="radio"
           id="css"
           name="language"
-          value="css"
-          onChange={() => { setLang("css")}}
+          value="xml"
+          onChange={() => { setLang("xml")}}
         />
         <label htmlFor="css">CSS</label>
 
