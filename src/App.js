@@ -1,25 +1,48 @@
-import logo from './logo.svg';
+import React, { useState } from 'react';
 import './App.css';
+import Editor from './Editor';
 
-function App() {
+export default function App() {
+
+  // Hooks to store state for editor language
+  const [lang, setLang] = useState("html");
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <h1>Dyte Code Editor Sandbox</h1>
+      <fieldset>
+        <legend>Choose language:</legend>
+        <input
+          type="radio"
+          id="html"
+          name="language"
+          value="html"
+          defaultChecked="true"
+          onChange={() => { setLang("html")}}
+        />
+        <label htmlFor="html">HTML</label>
+
+        <input
+          type="radio"
+          id="css"
+          name="language"
+          value="css"
+          onChange={() => { setLang("css")}}
+        />
+        <label htmlFor="css">CSS</label>
+
+        <input
+          type="radio"
+          id="javascript"
+          name="language"
+          value="javascript"
+          onChange={() => { setLang("javascript")}}
+        />
+        <label htmlFor="javascript">JavaScript</label>
+      </fieldset>
+
+      <Editor lang={lang}/>
+
     </div>
   );
 }
-
-export default App;
