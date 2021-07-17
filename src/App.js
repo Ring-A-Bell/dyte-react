@@ -50,34 +50,27 @@ export default function App() {
   }
 
   return (
-    <div>
-      <h1>Dyte Code Editor Sandbox</h1>
-      <Grid container spacing={3} md={8} style={{alignItems:""}}>
-        <Grid item xs={12} md={4}>
-          <FormControl component="fieldset">
-            <FormLabel component="legend">Language</FormLabel>
-            <RadioGroup value={lang} row>
-              <FormControlLabel value="html" control={<Radio />} label="HTML" onChange={() => setLang("html")}/>
-              <FormControlLabel value="css" control={<Radio />} label="CSS" onChange={() => setLang("css")}/>
-              <FormControlLabel value="javascript" control={<Radio />} label="JS" onChange={() => setLang("javascript")}/>
-            </RadioGroup>
-          </FormControl>
-        </Grid>
-
-        <Grid item xs={6} md={8}>
+    <div className="main-container">
+      <Grid container spacing={3}>
+        <Grid item xs={6} md={6}>
           <FormControl component="fieldset">
             <FormLabel component="legend">Indent</FormLabel>
-            <TextField value={indentation} select>
-              <MenuItem value={2} onSelect={() => setIndentation(2)}>2</MenuItem>
-              <MenuItem value={4} onChange={() => setIndentation(4)}>4</MenuItem>
-              <MenuItem value={8} onChange={() => setIndentation(8)}>8</MenuItem>
+            <TextField value={indentation} select onChange={(e) => setIndentation(e.target.value)}>
+              <MenuItem value={2} >2</MenuItem>
+              <MenuItem value={4} >4</MenuItem>
+              <MenuItem value={8} >8</MenuItem>
             </TextField>
           </FormControl>
+          
+        <FilePane setFile={setFile}/>
+        </Grid>
+        
+        <Grid item xs={6} md={6}>
         </Grid>
       </Grid>
 
       
-      <FilePane setFile={setFile}/>
+      
       <LiveView htmlCode={htmlCode} jsCode={jsCode} cssCode={cssCode}/>
 
     </div>
