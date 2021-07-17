@@ -6,16 +6,17 @@ import './prism.css';
 
 export default function Editor(props) {
 
-    const [code, setCode] = useState("");
     const [tabLength, setTabLength] = useState(0);
     const [indentLevel, setIndentLevel] = useState(4);
 
     useEffect(() => {
         Prism.highlightAll();
-    }, [props.lang, code]);
+        const json = JSON.stringify(props.code);
+        localStorage.setItem(`${props.fileName}`, json);
+    }, [props.lang, props.fileName, props.code]); 
 
     function handleKeyDown(e) {
-        let value = code;
+        let value = props.code;
         if(e.key==="Tab" && !e.shiftKey) {
             e.preventDefault();
             setTabLength(tabLength+1);
@@ -38,7 +39,7 @@ export default function Editor(props) {
                 value += " ";
             console.log(value);
         }
-        setCode(value);
+        props.setCode(value);
     }
 
     return (
@@ -46,14 +47,14 @@ export default function Editor(props) {
             <Grid container spacing={3} className="code-container">
                 <Grid item xs={12} lg={8} className="code-input">
                     <textarea className={`language-${props.lang}`}
-                        onChange={(e) => {setCode(e.target.value)}}
-                        value={code}
+                        onChange={(e) => {props.setCode(e.target.value)}}
+                        value={props.code}
                         onKeyDown={(e) => {handleKeyDown(e)}}
                     />
                 </Grid>
                 <Grid item xs={12} lg={8} className="code-output">
                     <pre>
-                        <code className={`language-${props.lang}`}>{code}</code>
+                        <code className={`language-${props.lang}`}>{props.code}</code>
                     </pre>
                 </Grid>
             </Grid>
