@@ -7,7 +7,7 @@ https://prismjs.com/download.html#themes=prism-okaidia&languages=css+clike+javas
  */
 
 code[class*="language-"],
-pre[class*="language-"] {
+pre[class*="language-"], textarea {
 	color: #f8f8f2;
 	background: none;
 	text-shadow: 0 1px rgba(0, 0, 0, 0.3);
@@ -31,7 +31,7 @@ pre[class*="language-"] {
 }
 
 /* Code blocks */
-pre[class*="language-"] {
+pre[class*="language-"], textarea {
 	padding: 1em;
 	margin: .5em 0;
 	overflow: auto;
@@ -39,12 +39,12 @@ pre[class*="language-"] {
 }
 
 :not(pre) > code[class*="language-"],
-pre[class*="language-"] {
+pre[class*="language-"], textarea {
 	background: #272822;
 }
 
 /* Inline code */
-:not(pre) > code[class*="language-"] {
+:not(pre) > code[class*="language-"], textarea {
 	padding: .1em;
 	border-radius: .3em;
 	white-space: normal;

@@ -1,6 +1,8 @@
 import React from 'react';
 import { useState } from 'react';
 import { useEffect } from 'react';
+import PasteBin from '../PasteBin';
+import './style.css';
 
 export default function LiveView(props) {
 
@@ -20,6 +22,7 @@ export default function LiveView(props) {
     return (
         <div>
             <iframe srcDoc={renderCode} />
+            <PasteBin code={renderCode} />
         </div>
     );
 }

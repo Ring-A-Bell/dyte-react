@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import FileDisp from '../Components/FileDisp';
+import './style.css';
 
 export default function FilePane(props) {
 
