@@ -7,7 +7,6 @@ import './prism.css';
 export default function Editor(props) {
 
     const [tabLength, setTabLength] = useState(0);
-    const [indentLevel, setIndentLevel] = useState(4);
 
     useEffect(() => {
         Prism.highlightAll();
@@ -20,7 +19,7 @@ export default function Editor(props) {
         if(e.key==="Tab" && !e.shiftKey) {
             e.preventDefault();
             setTabLength(tabLength+1);
-            for(var i=0;i<indentLevel;i++)
+            for(var i=0;i<props.indentLevel;i++)
                 value += " ";
             console.log(value);
         }
@@ -28,14 +27,14 @@ export default function Editor(props) {
         else if(e.shiftKey && e.key=="Tab") {
             e.preventDefault();
             setTabLength(tabLength-1);
-            value = value.substr(0,value.length-indentLevel);
+            value = value.substr(0,value.length-props.indentLevel);
             console.log(value);
         }
         
         if(e.key=="Enter") {
             e.preventDefault();
             value += "\n";
-            for(var i=1;i<=tabLength*indentLevel;i++)
+            for(var i=1;i<=tabLength*props.indentLevel;i++)
                 value += " ";
             console.log(value);
         }
@@ -43,21 +42,16 @@ export default function Editor(props) {
     }
 
     return (
-        <Container>
-            <Grid container spacing={3} className="code-container">
-                <Grid item xs={12} lg={8} className="code-input">
-                    <textarea className={`language-${props.lang}`}
-                        onChange={(e) => {props.setCode(e.target.value)}}
-                        value={props.code}
-                        onKeyDown={(e) => {handleKeyDown(e)}}
-                    />
-                </Grid>
-                <Grid item xs={12} lg={8} className="code-output">
-                    <pre>
-                        <code className={`language-${props.lang}`}>{props.code}</code>
-                    </pre>
-                </Grid>
-            </Grid>
-        </Container>
+        <div className="code-container">            
+            <pre className="code-output">
+                <code className={`language-${props.lang}`}>{props.code}</code>
+            </pre>
+            <textarea className="code-input"
+                onChange={(e) => {props.setCode(e.target.value)}}
+                value={props.code}
+                onKeyDown={(e) => {handleKeyDown(e)}}
+                spellCheck="false"
+            />
+        </div>
     );
 }
