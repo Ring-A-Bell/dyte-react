@@ -1,7 +1,10 @@
 import React, { useEffect } from 'react';
 import "./style.css";
 
+// Individual File Design (icon + text)
 export default function FileDisp(props) {
+    
+    // Script for using ion icons
     useEffect(() => {
         const script = document.createElement('script');
         script.type="module";

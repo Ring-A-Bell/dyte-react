@@ -6,16 +6,21 @@ import './prism.css';
 
 export default function Editor(props) {
 
+    // How many spaces for each tab
     const [tabLength, setTabLength] = useState(0);
 
     useEffect(() => {
         Prism.highlightAll();
+
+        // To store the code into the respective local storage file
         const json = JSON.stringify(props.code);
         localStorage.setItem(`${props.fileName}`, json);
     }, [props.lang, props.fileName, props.code]); 
 
     function handleKeyDown(e) {
         let value = props.code;
+
+        // Increase indentation
         if(e.key==="Tab" && !e.shiftKey) {
             e.preventDefault();
             setTabLength(tabLength+1);
@@ -24,6 +29,7 @@ export default function Editor(props) {
             console.log(value);
         }
 
+        // Decrease indentation
         else if(e.shiftKey && e.key=="Tab") {
             e.preventDefault();
             setTabLength(tabLength-1);
@@ -31,6 +37,7 @@ export default function Editor(props) {
             console.log(value);
         }
         
+        // Next line with the same indentation
         if(e.key=="Enter") {
             e.preventDefault();
             value += "\n";

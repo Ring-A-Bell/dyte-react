@@ -15,6 +15,7 @@ export default function App() {
   const [jsCode, setJsCode] = useState("");
 
   useEffect(() => {
+    // Loading content from the respective file whenever it is selected
     var json = localStorage.getItem("index.js");
     var data = JSON.parse(json);
     if(data)
