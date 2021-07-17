@@ -1,6 +1,7 @@
 import { Container, FormControlLabel, Grid, RadioGroup, Radio, FormControl, FormLabel, InputLabel, Select, MenuItem, TextField } from '@material-ui/core';
 import React, { useEffect, useState } from 'react';
 import './App.css';
+import LiveView from './Components/LiveView';
 import Editor from './Editor';
 import FilePane from './FilePane';
 
@@ -75,8 +76,9 @@ export default function App() {
         </Grid>
       </Grid>
 
-      {editorLang()}
+      
       <FilePane setFile={setFile}/>
+      <LiveView htmlCode={htmlCode} jsCode={jsCode} cssCode={cssCode}/>
 
     </div>
   );
