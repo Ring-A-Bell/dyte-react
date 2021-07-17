@@ -43,15 +43,15 @@ export default function Editor(props) {
 
     return (
         <Container>
-            <Grid container spacing={3}>
-                <Grid item xs={12} lg={8}>
+            <Grid container spacing={3} className="code-container">
+                <Grid item xs={12} lg={8} className="code-input">
                     <textarea className={`language-${props.lang}`}
                         onChange={(e) => {setCode(e.target.value)}}
                         value={code}
                         onKeyDown={(e) => {handleKeyDown(e)}}
                     />
                 </Grid>
-                <Grid item xs={12} lg={4}>
+                <Grid item xs={12} lg={8} className="code-output">
                     <pre>
                         <code className={`language-${props.lang}`}>{code}</code>
                     </pre>
